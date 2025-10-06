@@ -15,15 +15,20 @@
 
 #### Installation
 ```
-$ composer install
+composer install
 ```
 
 #### Run Unit Test
 ```
-$ ./vendor/bin/phpunit ./tests
+./vendor/bin/phpunit ./tests
+```
+
+#### Run Unit Test with report
+```
+./vendor/bin/phpunit --testdox-html testdox.html
 ```
 
 #### Manual Test
 ```
-$ php src/index.php
+php src/index.php
 ```
