@@ -20,4 +20,26 @@ use ComBank\Transactions\Contracts\BankTransactionInterface;
 
 class BankAccount
 {
+
+    private $balance;
+    private $status;
+
+    public function __construct(float $initialBalance = 0.0) {
+        $this->balance = $initialBalance;
+        $this->status = "open";
+        echo "My balance: ". $this->balance."\n";
+    }
+
+    public function getBalance(): float{
+        return $this-> balance;
+    } 
+
+    public function reopenAccount(): void{
+        $this->status = "open";
+    }
+
+    public function closeAccount():void{
+        $this->status = "closed";
+    }
+    
     }

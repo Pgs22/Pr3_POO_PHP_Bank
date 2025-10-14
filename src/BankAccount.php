@@ -3,8 +3,8 @@
 class BankAccount
 {
 
-    public float $balance = 0;
-    public bool $status;
+    private float $balance = 0;
+    private bool $status;
 
     public function __construct(float $initialBalance = 200.0) {
         $this->balance = $initialBalance;
