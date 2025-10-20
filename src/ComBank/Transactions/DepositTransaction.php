@@ -12,6 +12,9 @@ use ComBank\Transactions\Contracts\BankTransactionInterface;
 
 class DepositTransaction extends BaseTransaction implements BankTransactionInterface
 {
+    public function __construct(float $amount = 0.0) {
+        $this->amount;
+    }
 
     //Para hacer una transacción seleccionando la cuenta
     public function applyTransaction(BankAccountInterface $bankAccount): float {

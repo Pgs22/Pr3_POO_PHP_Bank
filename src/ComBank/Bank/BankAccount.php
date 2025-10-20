@@ -55,6 +55,7 @@ class BankAccount implements BankAccountInterface
 
         if (!$this->isOpen()) {
             $newBalance = $bankTransaction->applyTransaction( $this);
+            $this->balance = $newBalance;
         }
 
     }
