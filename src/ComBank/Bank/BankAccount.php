@@ -51,7 +51,11 @@ class BankAccount implements BankAccountInterface
     }     
     
     //Para hacer la transacción a la cuenta.:
-    public function transaction(BankTransactionInterface $transaction): void{
+    public function transaction(BankTransactionInterface $bankTransaction): void{
+
+        if (!$this->isOpen()) {
+            $newBalance = $bankTransaction->applyTransaction( $this);
+        }
 
     }
 
@@ -68,5 +72,6 @@ class BankAccount implements BankAccountInterface
     //Establece un nuevo saldo sin hacer ingresos, transferencias o retirar dinero, solo cambia el saldo
     public function setBalance(float $balance): void{
 
+        
     }
 }

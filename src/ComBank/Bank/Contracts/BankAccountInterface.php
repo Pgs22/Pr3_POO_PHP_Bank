@@ -23,7 +23,7 @@ interface BankAccountInterface
     /**
      * Para hacer la transacción a la cuenta.
      */
-    public function transaction(BankTransactionInterface $transaction): void;
+    public function transaction(BankTransactionInterface $bankTransaction): void;
 
     /**
      * Revisa si la cuenta está abierta.

@@ -12,5 +12,16 @@ use ComBank\Exceptions\InvalidOverdraftFundsException;
 
 interface BankTransactionInterface
 {
-    
+    /**
+     * Metodos para la transacción
+     */
+    //Para hacer una transacción seleccionando la cuenta
+    public function applyTransaction(BankAccountInterface $account): float;
+
+    //Texto que detalla la transacción
+    public function getTransactionInfo(): string;
+
+    //Para obtener el valor de la transacción.
+    public function getAmount(): float;
+
 }
