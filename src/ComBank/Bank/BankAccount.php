@@ -18,7 +18,7 @@ use ComBank\OverdraftStrategy\Contracts\OverdraftInterface;
 use ComBank\Support\Traits\AmountValidationTrait;
 use ComBank\Transactions\Contracts\BankTransactionInterface;
 
-class BankAccount implements BankAccountInterface
+class BankAccount implements BankAccountInterface 
 {
 
     private float $balance;
@@ -53,7 +53,7 @@ class BankAccount implements BankAccountInterface
     //Para hacer la transacción a la cuenta.:
     public function transaction(BankTransactionInterface $bankTransaction): void{
 
-        if (!$this->isOpen()) {
+        if ($this->isOpen()) {
             $newBalance = $bankTransaction->applyTransaction( $this);
             $this->balance = $newBalance;
         }
@@ -61,14 +61,18 @@ class BankAccount implements BankAccountInterface
     }
 
     //Limite de saldo negativo (overdraft) para la cuenta: ////Falta configurar
-    /*public function getOverdraft(): OverdraftInterface{
-
+    public function getOverdraft()#OverdraftInterface 
+    {
+        if ($this->balance) {
+            #$newBalance = $bankTransaction->applyTransaction( $this);
+            #$this->balance = $newBalance;
+        }
     }
 
     //Cambiar el limite de saldo negativo a la cuenta, a no permitido o modificar el limite impuesto 
     public function applyOverdraft(OverdraftInterface $overdraft): void{
 
-    }*/
+    }
 
     //Establece un nuevo saldo sin hacer ingresos, transferencias o retirar dinero, solo cambia el saldo
     public function setBalance(float $balance): void{
