@@ -46,17 +46,17 @@ interface BankAccountInterface
     public function getBalance(): float;
 
     /**
-     * Obtiene la estrategia de sobregiro (overdraft) actual de la cuenta.
+     * Limite de saldo negativo (overdraft) para la cuenta:
      */
-    //public function getOverdraft(): OverdraftInterface;
+    public function getOverdraft(): OverdraftInterface;
 
     /**
-     * Aplica una nueva estrategia de sobregiro a la cuenta.
+     * Cambiar el limite de saldo negativo (applyOverdraft) a la cuenta, a no permitido o modificar el limite impuesto 
      */
-    //public function applyOverdraft(OverdraftInterface $overdraft): void;
+    public function applyOverdraft(OverdraftInterface $overdraft): void;
 
     /**
-     * Establece un nuevo balance (generalmente usado internamente o en casos específicos).
+     * Cambiar directamente el saldo sin hacer ingresos.. solo cambia el saldo
      */
     public function setBalance(float $balance): void;
     

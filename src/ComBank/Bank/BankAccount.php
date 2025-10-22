@@ -25,8 +25,8 @@ class BankAccount implements BankAccountInterface
     private string $status;
     private $overdraft;
 
-    public function __construct(float $initialBalance = 0.0) {
-        $this->balance = $initialBalance;
+    public function __construct(float $newBalance = 0.0) {
+        $this->balance = $newBalance;
         #$this->status = "open";
         $this->status = BankAccountInterface::STATUS_OPEN;
         echo "My balance: ". $this->balance."\n";
@@ -61,17 +61,14 @@ class BankAccount implements BankAccountInterface
     }
 
     //Limite de saldo negativo (overdraft) para la cuenta: ////Falta configurar
-    public function getOverdraft()#OverdraftInterface 
+    public function getOverdraft(): OverdraftInterface
     {
-        if ($this->balance) {
-            #$newBalance = $bankTransaction->applyTransaction( $this);
-            #$this->balance = $newBalance;
-        }
+        return $this->overdraft;
     }
 
     //Cambiar el limite de saldo negativo a la cuenta, a no permitido o modificar el limite impuesto 
     public function applyOverdraft(OverdraftInterface $overdraft): void{
-
+        $this->overdraft = $overdraft;
     }
 
     //Establece un nuevo saldo sin hacer ingresos, transferencias o retirar dinero, solo cambia el saldo

@@ -12,18 +12,22 @@
  * */
 class SilverOverdraft 
 {
-    private const OVERDRAFT_LIMIT = -100.00;
+    private float $overdraftLimit;
+
+    public function __construct(float $limit) 
+    {
+        $this->overdraftLimit = $limit;
+    }
 
     public function getOverdraftFundsAmount(): float
     {
-        // Devuelve el valor absoluto del límite.
-        return abs(self::OVERDRAFT_LIMIT); // Devuelve 100.00
+        return $this->overdraftLimit;
     }
 
     public function isGrantOverdraftFunds(float $newBalance): bool
     {
         // Se concede el descubierto si el nuevo saldo es >= -100.00
-        return $newBalance >= self::OVERDRAFT_LIMIT;
+        return $newBalance >= $this->overdraftLimit;
     }
 
     
