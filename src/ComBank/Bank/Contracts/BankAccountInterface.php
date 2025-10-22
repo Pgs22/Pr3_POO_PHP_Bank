@@ -20,9 +20,8 @@ interface BankAccountInterface
    
     //Métodos añadidos respecto a la URL Class Diagram
 
-    /**
-     * Para hacer la transacción a la cuenta.
-     */
+    //Para hacer la transacción a la cuenta.
+
     public function transaction(BankTransactionInterface $bankTransaction): void;
 
     /**
