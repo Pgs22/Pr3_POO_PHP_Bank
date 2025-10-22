@@ -7,10 +7,9 @@
  * Time: 1:39 PM
  */
 
-/**
- * @description: Grant 100.00 overdraft funds.
- * */
-class SilverOverdraft 
+use ComBank\OverdraftStrategy\Contracts\OverdraftInterface;
+
+class SilverOverdraft implements OverdraftInterface
 {
     private float $overdraftLimit;
 
@@ -26,7 +25,6 @@ class SilverOverdraft
 
     public function isGrantOverdraftFunds(float $newBalance): bool
     {
-        // Se concede el descubierto si el nuevo saldo es >= -100.00
         return $newBalance >= $this->overdraftLimit;
     }
 
