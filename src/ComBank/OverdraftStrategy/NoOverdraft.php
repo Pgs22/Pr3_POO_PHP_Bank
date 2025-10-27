@@ -9,6 +9,7 @@
 
 use ComBank\OverdraftStrategy\Contracts\OverdraftInterface;
 
+//No permitir sobregiro
 class NoOverdraft implements OverdraftInterface
 {
     private const OVERDRAFT_LIMIT = 0.00;

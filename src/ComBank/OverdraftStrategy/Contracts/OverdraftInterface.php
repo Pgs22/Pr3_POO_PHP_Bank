@@ -9,7 +9,9 @@
 
 interface OverdraftInterface
 {
+   //Sobregiro
    public function getOverdraftFundsAmount(): float;
 
+   //Conceder sobregiro
    public function isGrantOverdraftFunds(float $newBalance): bool;
 }
