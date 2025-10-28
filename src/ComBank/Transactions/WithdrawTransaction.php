@@ -17,7 +17,22 @@ class WithdrawTransaction extends BaseTransaction implements BankTransactionInte
 
 //Falta comprobar si está en negativo el balance para aceptar o no la retirada   
     public function applyTransaction(BankAccountInterface $bankAccount): float {
-        //Suma los valores
+        //Para obtener el objeto balance de la clase BankAccount que nos dice el saldo actual
+        $balance = $bankAccount->getBalance();
+        //Para saber el dinero a retirar
+        $transactionAmount = $this->amount;
+        //Para calcular el total que quedaría en la cuenta tras la retirada
+        $newBalance = $balance - $transactionAmount;
+        //Obtenemos el valor del limite permitido de saldo negativo
+        $overdraft = $bankAccount->getOverdraft();
+
+        //Comprobamos si queda en negativo el saldo y si tiene ese limite permitido
+        if ($overdraft->isGrantOverdraftFunds($newBalance)){
+            //Si se cumple condicion cambiar el saldo de la cuenta restando la retirada 
+            $bankAccount->setBalance($newBalance);
+            return $newBalance;
+        }
+        //Resta los valores
         return $bankAccount->getBalance() - $this->amount;        
     }
 
