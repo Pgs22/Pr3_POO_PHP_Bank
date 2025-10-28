@@ -13,5 +13,6 @@ interface OverdraftInterface
    public function getOverdraftFundsAmount(): float;
 
    //Conceder sobregiro
-   public function isGrantOverdraftFunds(float $newBalance): bool;
+   public function isGrantOverdraftFunds(float $newAmount): bool;
+
 }

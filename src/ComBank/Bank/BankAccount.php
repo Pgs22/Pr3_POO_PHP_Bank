@@ -27,9 +27,7 @@ class BankAccount implements BankAccountInterface
 
     public function __construct(float $newBalance = 0.0) {
         $this->balance = $newBalance;
-        #$this->status = "open";
         $this->status = BankAccountInterface::STATUS_OPEN;
-        echo "My balance: ". $this->balance."\n";
     }
 
     public function getBalance(): float{
@@ -37,12 +35,10 @@ class BankAccount implements BankAccountInterface
     } 
 
     public function reopenAccount(): void{
-        #$this->status = "open";
         $this->status = BankAccountInterface::STATUS_OPEN;
     }
 
     public function closeAccount():void{
-        #$this->status = "closed";
         $this->status = BankAccountInterface::STATUS_CLOSED;
     }
 

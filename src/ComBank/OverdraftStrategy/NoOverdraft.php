@@ -18,11 +18,12 @@ class NoOverdraft implements OverdraftInterface
     {
         return self::OVERDRAFT_LIMIT; // Devuelve el limite que siempre será 0.00
     }
-
-    public function isGrantOverdraftFunds(float $newBalance): bool
+    //Conceder sobregiro
+    public function isGrantOverdraftFunds(float $newAmount): bool
     {
+        return ($this->getOverdraftFundsAmount() + $newAmount) >= 0;
         // Devuelte un booleano, el saldo debe ser >= 0.00
-        return $newBalance >= self::OVERDRAFT_LIMIT;
+        //return $newBalance >= self::OVERDRAFT_LIMIT;
     }
    
 }

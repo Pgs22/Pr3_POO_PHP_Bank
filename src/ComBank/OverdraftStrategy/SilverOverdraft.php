@@ -24,9 +24,9 @@ class SilverOverdraft implements OverdraftInterface
         return $this->overdraftLimit;
     }
 
-    public function isGrantOverdraftFunds(float $newBalance): bool
+    public function isGrantOverdraftFunds(float $newAmount): bool
     {
-        return $newBalance >= $this->overdraftLimit;
+        return $newAmount >= $this->overdraftLimit;
     }
 
     
