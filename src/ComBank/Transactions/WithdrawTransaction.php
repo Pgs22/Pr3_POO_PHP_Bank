@@ -24,10 +24,10 @@ class WithdrawTransaction extends BaseTransaction implements BankTransactionInte
         //Para calcular el total que quedaría en la cuenta tras la retirada
         $newBalance = $balance - $transactionAmount;
         //Obtenemos el valor del limite permitido de saldo negativo
-        $overdraft = $bankAccount->getOverdraft();
+        $overdraftStrategy = $bankAccount->getOverdraft();
 
         //Comprobamos si queda en negativo el saldo y si tiene ese limite permitido
-        if ($overdraft->isGrantOverdraftFunds($newBalance)){
+        if ($overdraftStrategy->isGrantOverdraftFunds($newBalance)){
             //Si se cumple condicion cambiar el saldo de la cuenta restando la retirada 
             $bankAccount->setBalance($newBalance);
             return $newBalance;
