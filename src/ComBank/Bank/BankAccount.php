@@ -44,15 +44,21 @@ class BankAccount implements BankAccountInterface
 
     public function isOpen(): bool{
         return $this->status === BankAccountInterface::STATUS_OPEN;
-    }     
+    }
     
     //Para hacer la transacción a la cuenta.:
     public function transaction(BankTransactionInterface $bankTransaction): void{
 
-        if ($this->isOpen()) {
-            $newBalance = $bankTransaction->applyTransaction( $this);
-            $this->balance = $newBalance;
+        if(!$this->isOpen()){
+            throw new BankAccountException("Bank account should be opened.");
         }
+        try{
+            $newBalance = $bankTransaction->applyTransaction( $this);
+            #$this->balance = $newBalance; //Mejor usar otro metodo que lo englobe, por cambios futuros solo hará falta cambiar un método
+            $this->setBalance($newBalance);
+        } catch (InvalidOverdraftFundsException $e) {
+            throw new FailedTransactionException("Transaction failed: ");
+        } 
 
     }
 
@@ -69,7 +75,6 @@ class BankAccount implements BankAccountInterface
 
     //Establece un nuevo saldo sin hacer ingresos, transferencias o retirar dinero, solo cambia el saldo
     public function setBalance(float $balance): void{
-
-        
+        $this->balance = $balance;
     }
 }

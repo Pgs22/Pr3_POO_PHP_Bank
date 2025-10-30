@@ -21,7 +21,7 @@ class WithdrawTransaction extends BaseTransaction implements BankTransactionInte
     public function applyTransaction(BankAccountInterface $bankAccount): float {
         $newBalance = $bankAccount->getBalance() - $this->amount;
         if(!$bankAccount->getOverdraft()->isGrantOverdraftFunds($newBalance)){
-            throw new InvalidOverdraftFundsException(message:'Your...');
+            throw new InvalidOverdraftFundsException(message:'Your withdraw has reach the max overdraft funds.');
         }
         return $newBalance;
         //Para obtener el objeto balance de la clase BankAccount que nos dice el saldo actual
