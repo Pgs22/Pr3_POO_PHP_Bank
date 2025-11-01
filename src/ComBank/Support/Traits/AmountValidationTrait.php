@@ -23,7 +23,7 @@ trait AmountValidationTrait
             throw new InvalidArgsException("Invalidate it isnt't a number");
         }
         if($amount <= 0) {
-            throw new ZeroAmountException("Error transaction: Insufficient balance to complete the withdrawal.");
+            throw new ZeroAmountException("Deposit amount must be greater than zero.");
         }
     }
 }
