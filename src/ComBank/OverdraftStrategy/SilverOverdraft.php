@@ -14,7 +14,7 @@ class SilverOverdraft implements OverdraftInterface
 {
     private float $overdraftLimit;
 
-    public function __construct(float $limit) 
+    public function __construct(float $limit = -100.0) 
     {
         $this->overdraftLimit = $limit;
     }

@@ -13,6 +13,13 @@ use ComBank\Support\Traits\AmountValidationTrait;
 
 abstract class BaseTransaction
 {
+    use AmountValidationTrait;
     protected float $amount;
+
+    public function __construct(float $amount){
+        $this->validateAmount($amount);
+        //Si lanza excepción el validateAmount, no hará lo siguiente, asignarlo el importe de entrada, para retirar dinero
+        $this->amount = $amount;
+    }
 
 }

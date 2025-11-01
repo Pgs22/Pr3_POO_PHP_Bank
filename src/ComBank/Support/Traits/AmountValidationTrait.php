@@ -19,6 +19,11 @@ trait AmountValidationTrait
      */
     public function validateAmount(float $amount):void
     {
-        
+        if(!is_numeric($amount)) {
+            throw new InvalidArgsException("Invalidate it isnt't a number");
+        }
+        if($amount <= 0) {
+            throw new ZeroAmountException("Error transaction: Insufficient balance to complete the withdrawal.");
+        }
     }
 }

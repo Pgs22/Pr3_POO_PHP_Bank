@@ -28,6 +28,7 @@ class BankAccount implements BankAccountInterface
     public function __construct(float $newBalance = 0.0) {
         $this->balance = $newBalance;
         $this->status = BankAccountInterface::STATUS_OPEN;
+        $this->overdraft = new NoOverdraft(); //Establecer a 0.00 el límite permitido de sobregiro
     }
 
     public function getBalance(): float{
@@ -35,10 +36,16 @@ class BankAccount implements BankAccountInterface
     } 
 
     public function reopenAccount(): void{
+        if ($this->isOpen()) {
+            throw new BankAccountException("Bank account is already opened.");
+        }
         $this->status = BankAccountInterface::STATUS_OPEN;
     }
 
     public function closeAccount():void{
+        if (!$this->isOpen()) {
+            throw new BankAccountException("Bank account is already closed.");
+        }
         $this->status = BankAccountInterface::STATUS_CLOSED;
     }
 
@@ -57,7 +64,7 @@ class BankAccount implements BankAccountInterface
             #$this->balance = $newBalance; //Mejor usar otro metodo que lo englobe, por cambios futuros solo hará falta cambiar un método
             $this->setBalance($newBalance);
         } catch (InvalidOverdraftFundsException $e) {
-            throw new FailedTransactionException("Transaction failed: ");
+            throw new FailedTransactionException("Insufficient balance to complete the withdrawal.");
         } 
 
     }

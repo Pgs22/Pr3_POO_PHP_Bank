@@ -13,7 +13,10 @@ use ComBank\Transactions\Contracts\BankTransactionInterface;
 class DepositTransaction extends BaseTransaction implements BankTransactionInterface
 {
     public function __construct(float $amount = 0.0) {
-        $this->amount = $amount;
+        //Se cambia al saltarse la verificacion añadido a posteriori en la clase abstracta
+        #$this->amount = $amount;
+        // Llama al constructor de BaseTransaction para que ejecute la validación(También se aplican cambios en AmountValidationTrait)
+        parent::__construct($amount);
     }
 
     //Para hacer una transacción seleccionando la cuenta
@@ -24,7 +27,7 @@ class DepositTransaction extends BaseTransaction implements BankTransactionInter
 
     //Texto que detalla la transacción
     public function getTransactionInfo(): string {
-        return '';
+        return 'DEPOSIT_TRANSACTION';
     }
 
     //Para obtener el valor de la transacción.

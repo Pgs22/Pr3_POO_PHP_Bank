@@ -28,24 +28,26 @@ try {
 
     // close account
     $bankAccount1->closeAccount();
-
+    pl( 'My account is now closed.');
     // reopen account
     $bankAccount1->reopenAccount();
-
+    pl( 'My account is now reopened.');
 
     // deposit +150 
     pl('Doing transaction deposit (+150) with current balance ' . $bankAccount1->getBalance());
-    $bankAccount1->transaction(bankTransaction: new DepositTransaction(150));
+    $bankAccount1->transaction(new DepositTransaction(150));
     pl('My new balance after deposit (+150) : ' . $bankAccount1->getBalance());
 
 
     // withdrawal -25
     pl('Doing transaction withdrawal (-25) with current balance ' . $bankAccount1->getBalance());
-
+    $bankAccount1->transaction(new WithdrawTransaction(25));
     pl('My new balance after withdrawal (-25) : ' . $bankAccount1->getBalance());
 
     // withdrawal -600
     pl('Doing transaction withdrawal (-600) with current balance ' . $bankAccount1->getBalance());
+    $bankAccount1->transaction(new WithdrawTransaction(600));
+
 
 } catch (ZeroAmountException $e) {
     pl($e->getMessage());

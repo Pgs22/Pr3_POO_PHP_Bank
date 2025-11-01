@@ -23,7 +23,6 @@ class NoOverdraft implements OverdraftInterface
     {
         return ($this->getOverdraftFundsAmount() + $newAmount) >= 0;
         // Devuelte un booleano, el saldo debe ser >= 0.00
-        //return $newBalance >= self::OVERDRAFT_LIMIT;
     }
    
 }
