@@ -29,6 +29,7 @@ class DepositTransactionTest extends TestCase
     /**
      * @test
      * @dataProvider invalidAmountProvider
+     * @expectedException ComBank\Exceptions\ZeroAmountException
      * */
     public function testInvalidAmount($amount)
     {
